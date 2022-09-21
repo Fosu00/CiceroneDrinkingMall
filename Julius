@@ -1,0 +1,92 @@
+package com.ciceronedrinkingmall;
+
+import java.util.Scanner;
+
+public class CiceroneDrinkingMall {
+    public static void main(String[] args) {
+
+        double subTotalBeer, subTotalVodka,subTotalWhiskey,subTotalWine,subTotalGin;
+        double totalOrder;
+        int numberOfItems;
+        final double discountRate=0.25;
+    Scanner sc = new Scanner(System.in);
+    CustomerDetails customer = new CustomerDetails();
+    Prices prices = new Prices();
+    ItemsQuantity num = new ItemsQuantity();
+    Date date = new Date();
+
+        System.out.println("Welcome to Cicerone Beverage Shop");
+
+    //CUSTOMER DETAILS
+        System.out.print("Please enter customer's name: ");
+        customer.setCustomerName(sc.nextLine());
+        System.out.print("Please enter customer's mobile number: ");
+        customer.setCustomerNumber(sc.nextLine());
+
+        //UNIT PRICE OF ITEMS
+        System.out.print("\nEnter the price of one bottle of beer: ");
+        prices.setPriceOneBeer(sc.nextDouble());
+        System.out.print("\nEnter the price of one bottle of Vodka: ");
+        prices.setPriceOneVodka(sc.nextDouble());
+        System.out.print("\nEnter the price of one bottle of Whisky: ");
+        prices.setPriceOneWhisky(sc.nextDouble());
+        System.out.print("\nEnter the price of one bottle of Wine: ");
+        prices.setPriceOneWine(sc.nextDouble());
+        System.out.print("\nEnter the price of one bottle of Gin: ");
+        prices.setPriceOneGin(sc.nextDouble());
+
+        //NUMBER OF ITEMS BOUGHT
+        System.out.print("\nEnter number of Beers bought: ");
+        num.setNumberOfBeer(sc.nextInt());
+        System.out.print("\nEnter number of Vodka bought: ");
+        num.setNumberOfVodka(sc.nextInt());
+        System.out.print("\nEnter number of Whisky bought: ");
+        num.setNumberOfWhisky(sc.nextInt());
+        System.out.print("\nEnter number of Wine bought: ");
+        num.setNumberOfWine(sc.nextInt());
+        System.out.print("\nEnter number of Gin bought: ");
+        num.setNumberOfGin(sc.nextInt());
+
+        //DETAILS OF TRANSACTION DATE
+        System.out.println("\nEnter transaction date");
+        System.out.println("=======================================");
+        System.out.print("Enter day number: ");
+        date.setOrderDay(sc.nextShort());
+        System.out.print("Enter month number: ");
+        date.setOrderMonth(sc.nextShort());
+        System.out.print("Enter year number: ");
+        date.setOrderYear(sc.nextShort());
+
+        //CALCULATIONS FOR TOTALS
+        subTotalBeer =ItemsQuantity.NumberOfBeer * Prices.PriceOneBeer;
+        subTotalVodka =ItemsQuantity.NumberOfVodka * Prices.PriceOneVodka;
+        subTotalWhiskey =ItemsQuantity.NumberOfWhisky * Prices.PriceOneWhisky;
+        subTotalWine =ItemsQuantity.NumberOfWine * Prices.PriceOneWine;
+        subTotalGin =ItemsQuantity.NumberOfGin * Prices.PriceOneGin;
+        totalOrder =subTotalBeer + subTotalVodka + subTotalWhiskey + subTotalWine + subTotalGin;
+        numberOfItems =ItemsQuantity.NumberOfBeer+ItemsQuantity.NumberOfVodka+ItemsQuantity.NumberOfWhisky+ItemsQuantity.NumberOfWine+ItemsQuantity.NumberOfGin;
+
+
+    }
+
+    public static void CreateReceipt(){
+        System.out.println("\n-/-\t\tCicerone Drinking Mall\t-/-");
+        System.out.println("=============================================");
+        System.out.println("Customer: "+CustomerDetails.CustomerName);
+        System.out.println("Contact Number: "+CustomerDetails.CustomerNumber);
+        System.out.println("Order Date: "+Date.OrderDay+" / "+Date.OrderMonth+" / "+Date.OrderYear);
+        System.out.println("----------------------------------------------");
+        System.out.println("\tItems\t\t\tQty\t\tUnit/Price\tSub-Total");
+        System.out.println("Bottles Of Beer\t\t"+ItemsQuantity.NumberOfBeer+"\t\t$"+Prices.PriceOneBeer+"\t\t\t$"+subTotalBeer);
+        System.out.println("Bottles Of Vodka\t"+ItemsQuantity.NumberOfVodka+"\t\t$"+Prices.PriceOneVodka+"\t\t\t$"+subTotalVodka);
+        System.out.println("Bottles Of Whisky\t"+ItemsQuantity.NumberOfWhisky+"\t\t$"+Prices.PriceOneWhisky+"\t\t\t$"+subTotalWhiskey);
+        System.out.println("Bottles Of Wine\t\t"+ItemsQuantity.NumberOfWine+"\t\t$"+Prices.PriceOneWine+"\t\t\tp$"+subTotalWine);
+        System.out.println("Bottles Of Gin\t\t"+ItemsQuantity.NumberOfGin+"\t\t$"+Prices.PriceOneGin+"\t\t\t$"+subTotalGin);
+        System.out.println("---------------------------------------------");
+        System.out.println("Number Of Items"+numberOfItems);
+        System.out.print("Total Order: $"+totalOrder+"\t"  );
+        System.out.println("Total Discount: $"+totalOrder*discountRate);
+        System.out.println("==============================================");
+
+    }
+}
